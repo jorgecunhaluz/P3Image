@@ -1,0 +1,63 @@
+﻿@model IList<Entidades.SubCategoria>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Descrição</th>
+            <th>Slug</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var subCategoria in Model)
+        {
+            <tr>
+                <td>@subCategoria.Id</td>
+                <td>
+                    <a href="~/SubCategoria/Form/@subCategoria.Id">
+                        @subCategoria.Descricao
+                    </a>
+                </td>
+                <td>@subCategoria.Slug</td>
+
+                                <td>
+                    <a href="~/SubCategoria/Campos/@subCategoria.Id" class="btn btn-warning pull-right">Configurar Campos</a>
+                </td>
+
+                <td>
+                    <a href="~/SubCategoria/Excluir/@subCategoria.Id" class="btn btn-danger pull-right excluir">Excluir</a>
+                </td>
+
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="alert alert-info clearfix">
+    @Html.ActionLink("Nova SubCategoria", "Form", "SubCategoria", new { @class = "btn btn-primary pull-right" })
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $().ready(function () {
+            $(".excluir").click(
+                function (e) {
+                    e.preventDefault();
+                    var deletou = confirm("Tem certeza que deseja excluir?");
+                    if (deletou)
+                        location.href = $(this).attr("href");
+                });
+        });
+    </script>
+    }

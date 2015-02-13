@@ -1,0 +1,9 @@
+C:\Users\Samsung\Desktop\P3Image\Entidades\bin\Debug\Entidades.dll
+C:\Users\Samsung\Desktop\P3Image\Entidades\bin\Debug\Entidades.pdb
+C:\Users\Samsung\Desktop\P3Image\Entidades\obj\Debug\Entidades.dll
+C:\Users\Samsung\Desktop\P3Image\Entidades\obj\Debug\Entidades.pdb
+C:\Users\jhluz\Desktop\P3Image\Entidades\bin\Debug\Entidades.dll
+C:\Users\jhluz\Desktop\P3Image\Entidades\bin\Debug\Entidades.pdb
+C:\Users\jhluz\Desktop\P3Image\Entidades\obj\Debug\Entidades.dll
+C:\Users\jhluz\Desktop\P3Image\Entidades\obj\Debug\Entidades.pdb
+C:\Users\jhluz\Desktop\P3Image\Entidades\obj\Debug\Entidades.csprojResolveAssemblyReference.cache

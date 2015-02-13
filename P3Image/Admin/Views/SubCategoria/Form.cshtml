@@ -1,0 +1,37 @@
+﻿@model Entidades.SubCategoria
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Form</title>
+</head>
+<body>
+    <div>
+        <form action="/SubCategoria/Adiciona" method="post">
+
+        @Html.HiddenFor(c => c.Id)
+
+        <label for="descricao">Descrição:</label>
+        @Html.TextBoxFor(c => c.Descricao, new { @class = "form-control" })
+
+        <label for="slug">Slug:</label>
+        @Html.TextBoxFor(c => c.Slug, new { @class = "form-control" })
+
+        <label for="categoria">Categoria:</label>
+        @Html.DropDownListFor(m => m.IdCategoria,
+             new SelectList(ViewBag.Categorias, "Id", "Descricao"), new { @class = "form-control" })
+
+        <br />
+        <div class="alert alert-info clearfix">
+            <input type="submit" value="Cadastrar" class="btn btn-primary pull-right" />
+        </div>
+        </form>
+    </div>
+</body>
+</html>

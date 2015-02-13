@@ -1,0 +1,79 @@
+﻿@model Entidades.SubCategoria
+@{
+    ViewBag.Title = "Campos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Form</title>
+</head>
+<body>
+    <div>
+        <form action="/SubCategoria/GravaCampoAdicionado" method="post">
+
+        @Html.Hidden("IdSubCategoria", Model.Id)
+
+        <h1>Sub Categoria: <strong>@Model.Descricao</strong></h1>
+
+
+        <label for="campo">Campos:</label>
+        @Html.DropDownList("IdCampo", new SelectList(ViewBag.Campos, "Id", "Descricao"), new { @class = "form-control" })
+        <br />
+        <input type="submit" value="Adicionar" class="btn btn-primary pull-right" />
+        </form>
+
+        <br />
+        <br />
+         <div class="alert alert-warning clearfix">
+                Clique na linha e arraste para ordenar!
+        </div>
+
+        <form action="/SubCategoria/GravaOrdem" method="post">
+
+        @Html.Hidden("idSubCategoria", Model.Id)
+
+        <table class="table table-hover" id="tabela">
+            <thead>
+                <tr>
+                    <th>Campo</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var campo in Model.SubCategoriaCampos.OrderBy(a => a.Ordem))
+                {
+                    <tr>
+                        <td>@campo.Campo.Descricao</td>
+                        <td>
+                            <span class="campospan">@campo.Campo.Tipo.Descricao</span>
+                        </td>
+                        <td>
+                            <a href="~/SubCategoria/ExcluirOpcao?idSubCategoria=@campo.IdSubCategoria&idCampo=@campo.IdCampo&ordem=@campo.Ordem" class="btn btn-danger pull-right excluir">Excluir</a>
+                            @Html.Hidden("idCampo", campo.IdCampo)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <br />
+        <div class="alert alert-info clearfix">
+            <input type="submit" value="Gravar Ordem" class="btn btn-primary pull-right" />
+        </div>
+        </form>
+    </div>
+</body>
+</html>
+
+@section scripts{
+    <script type="text/javascript">
+        $().ready(function () {
+            $('#tabela tbody').sortable();
+        });
+    </script>
+}
+

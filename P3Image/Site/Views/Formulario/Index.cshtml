@@ -1,0 +1,54 @@
+﻿@model Entidades.SubCategoria
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (Model.Id != 0)
+{
+    <table class="table table-hover">
+
+        @foreach (var item in Model.SubCategoriaCampos.OrderBy(c => c.Ordem))
+        {
+            <tr>
+                <td>@Html.Label(item.Campo.Descricao + " : ")</td>
+                <td>
+                    @if (item.Campo.Tipo.Descricao == "TextBox")
+                    {
+                        @Html.TextBox(item.Campo.Descricao.Replace(" ", ""), "", new { @class = "form-control" })
+                    }
+
+                    @if (item.Campo.Tipo.Descricao == "CheckBox")
+                    {
+                        @Html.CheckBox(item.Campo.Descricao.Replace(" ", ""), "")
+                    }
+
+                    @if (item.Campo.Tipo.Descricao == "Inteiro")
+                    {
+                        @Html.TextBox(item.Campo.Descricao.Replace(" ", ""), "", new { @class = "Inteiro form-control" })
+                    }
+
+                    @if (item.Campo.Tipo.Descricao == "Decimal")
+                    {
+                        @Html.TextBox(item.Campo.Descricao.Replace(" ", ""), "", new { @class = "Decimal form-control" })
+                    }
+
+                    @if (item.Campo.Tipo.Descricao == "Date")
+                    {
+                        @Html.TextBox(item.Campo.Descricao.Replace(" ", ""), "", new { @class = "Date form-control" })
+                    }
+
+                    @if (item.Campo.Tipo.Descricao == "DropDownList")
+                    {
+                        @Html.DropDownList(item.Campo.Descricao.Replace(" ", ""), new SelectList(item.Campo.Opcoes.Select(a => a.Descricao).ToList()), new { @class = "form-control" })
+                    }
+
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+

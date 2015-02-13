@@ -1,0 +1,64 @@
+﻿@model IList<Entidades.Campo>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Descrição</th>
+            <th>Tipo</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var campo in Model)
+        {
+            <tr>
+                <td>@campo.Id</td>
+                <td>
+                    <a href="~/Campo/Form/@campo.Id">
+                        @campo.Descricao
+                    </a>
+                </td>
+                <td>@campo.Tipo.Descricao</td>
+
+                <td>
+                    @if (campo.Tipo.Descricao == "DropDownList")
+                    {
+                        <a href="~/Campo/ListaDropDown/@campo.Id" class="btn btn-warning pull-right">Opções</a>
+                    }
+                </td>
+
+                <td>
+                    <a href="~/Campo/Excluir/@campo.Id" class="btn btn-danger pull-right excluir">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="alert alert-info clearfix">
+
+    @Html.ActionLink("Novo Campo", "Form", "Campo", new { @class = "btn btn-primary pull-right" })
+
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $().ready(function () {
+            $(".excluir").click(
+                function (e) {
+                    e.preventDefault();
+                    var deletou = confirm("Tem certeza que deseja excluir?");
+                    if (deletou)
+                        location.href = $(this).attr("href");
+                });
+        });
+    </script>
+}
+

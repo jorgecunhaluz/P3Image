@@ -1,0 +1,55 @@
+﻿@model IList<Entidades.Categoria>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Descrição</th>
+            <th>Slug</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var categoria in Model)
+        {
+            <tr>
+                <td>@categoria.Id</td>
+                <td>
+                    <a href="~/Categoria/Form/@categoria.Id">
+                        @categoria.Descricao
+                    </a>
+                </td>
+                <td>@categoria.Slug</td>
+
+                <td>
+                    <a href="~/Categoria/Excluir/@categoria.Id" class="btn btn-danger pull-right excluir">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="alert alert-info clearfix">
+
+    @Html.ActionLink("Nova Categoria", "Form", "Categoria", new { @class = "btn btn-primary pull-right" })
+
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $().ready(function () {
+            $(".excluir").click(
+                function (e) {
+                    e.preventDefault();
+                    var deletou = confirm("Tem certeza que deseja excluir?");
+                    if (deletou)
+                        location.href = $(this).attr("href");
+                });
+        });
+    </script>
+    }
